@@ -1,0 +1,21 @@
+- name: copy elastick repo
+  ansible.builtin.template:
+    src: elastick.repo
+    dest: /etc/yum.repos.d/elastick.repo
+
+- name: start filebeat
+  ansible.builtin.dnf:
+    name: filebeat
+    state: started
+
+
+- name: filebeat configuration
+  ansible.builtin.template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+
+- name: start filebeat
+  ansible.builtin.service:
+    name: filebeat
+    state: restarted
+    enabled: yes
