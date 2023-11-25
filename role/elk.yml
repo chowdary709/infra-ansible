@@ -4,5 +4,5 @@
   vars:
     user_name: centos
     user_password: DevOps321
-  roles:
-    - "{{ role_name }}"
+#  roles:
+#    - "{{ role_name }}"
