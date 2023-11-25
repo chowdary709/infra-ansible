@@ -1,0 +1,4 @@
+- name: ELK confing setup
+  host: all
+  role:
+    - elk
