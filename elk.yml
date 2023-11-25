@@ -1,6 +1,6 @@
-- name: Expense Project Setup
+- name: ELK Config Setup
   hosts: all
   become: yes
   roles:
     - elk
-#    - "{{ role_name }}"
+
