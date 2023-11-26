@@ -32,7 +32,7 @@
     name: elk
     tasks_from: filebeat
 
-- name: install prometheus
+- name: Install Node Exporter
   ansible.builtin.import_role:
     name: prometheus
-    tasks_from: node-exporter.service
+    tasks_from: node-exporter
