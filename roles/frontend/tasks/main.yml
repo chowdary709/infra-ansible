@@ -31,3 +31,8 @@
   ansible.builtin.import_role:
     name: elk
     tasks_from: filebeat
+
+- name: install prometheus
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: node-prometheus
