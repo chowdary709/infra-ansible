@@ -1,5 +1,5 @@
 - name: setup prometheus repo
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: prometheus.yml
     dest: /etc/prometheus/prometheus.yml
 
