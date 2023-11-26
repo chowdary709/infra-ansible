@@ -4,16 +4,15 @@
     dest: "/opt"
     remote_src: yes
 
-- name: copy services file
+- name: Copy Service file
   ansible.builtin.template:
     src: node-exporter.service
     dest: /etc/systemd/system/node-exporter.service
 
-
-- name: enable and start node-exporter
+- name: Restart Service
   ansible.builtin.systemd:
     name: node-exporter
     state: restarted
     enabled: yes
-    daemon_reload: yes
+    daemon-reload: yes
 
