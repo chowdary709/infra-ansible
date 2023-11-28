@@ -36,7 +36,7 @@ scrape_configs:
         port: 9100
         filters:
           - Name: "tag:project"
-            Values: ["expense"]
+            Values: [ "expense" ]
     relabel_configs:
       - source_labels: [__meta_ec2_private_ip]
         target_label: privateip
