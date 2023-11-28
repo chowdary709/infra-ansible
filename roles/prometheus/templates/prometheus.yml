@@ -9,12 +9,12 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-          # - alertmanager:9093
+            - localhost:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-# - "first_rules.yml"
-# - "second_rules.yml"
+  - record.yml
+  - alerts.yml
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -28,15 +28,14 @@ scrape_configs:
     static_configs:
       - targets: ["localhost:9090"]
 
-# ec2_sd_config example
   - job_name: "expense"
-    static_configs:
     ec2_sd_configs:
       - region: us-east-1
         port: 9100
+        filters:
+          - name: "tag:project"
+            values: ["expense"]
     relabel_configs:
-      - source_labels: [__meta_ec2_public_ip]
-        target_label: publicip
       - source_labels: [__meta_ec2_private_ip]
         target_label: privateip
       - source_labels: [__meta_ec2_tag_Name]
