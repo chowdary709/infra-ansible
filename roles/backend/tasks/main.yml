@@ -1,3 +1,6 @@
+- name: Set Hostname
+  ansible.builtin.shell: set-hostname backend
+
 - name: Verify NodeJS
   ansible.builtin.shell: type npm
   register: npm
@@ -13,7 +16,7 @@
   when: npm.rc != 0
 
 - name: Copy Backend Service File
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: backend.service
     dest: /etc/systemd/system/backend.service
 
