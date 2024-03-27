@@ -1,28 +1,40 @@
-- name: Set Hostname
-  ansible.builtin.shell: set-hostname frontend
-
-- name: Installing Nginx
-  ansible.builtin.dnf:
-    name: nginx
-    state: present
-
-- name: Placing Expense Config File in Nginx
-  ansible.builtin.template:
-    src: expense.conf
-    dest: /etc/nginx/default.d/expense.conf
-
-#- name: Update Nginx Config
+#- name: Set Hostname
+#  ansible.builtin.shell: set-hostname frontend
+#
+#- name: Installing Nginx
+#  ansible.builtin.dnf:
+#    name: nginx
+#    state: present
+#
+#- name: Placing Expense Config File in Nginx
 #  ansible.builtin.template:
-#    src: nginx.conf
-#    dest: /etc/nginx/nginx.conf
+#    src: expense.conf
+#    dest: /etc/nginx/default.d/expense.conf
+#
+##- name: Update Nginx Config
+##  ansible.builtin.template:
+##    src: nginx.conf
+##    dest: /etc/nginx/nginx.conf
+#
+#- name: Include App Pre-requisites
+#  ansible.builtin.import_role:
+#    name: common
+#    tasks_from: app_prereq
+#
+#- name: Starting Nginx Service
+#  ansible.builtin.systemd:
+#    name: nginx.service
+#    state: restarted
+#    enabled: yes
 
-- name: Include App Pre-requisites
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: app_prereq
 
-- name: Starting Nginx Service
+- name: Stop Nginx service
   ansible.builtin.systemd:
-    name: nginx.service
-    state: restarted
-    enabled: yes
+    name: nginx
+    state: stopped
+    enabled: no
+
+- name: Remove Nginx package
+  ansible.builtin.yum:
+    name: nginx
+    state: absent
