@@ -1,17 +1,10 @@
 - name: Set Hostname
   ansible.builtin.shell: set-hostname frontend
 
-
-
 - name: Installing Nginx
   ansible.builtin.dnf:
     name: nginx
-    state: latest
-
-- name: Create nginx default.d directory
-  ansible.builtin.file:
-    path: /etc/nginx/default.d
-    state: directory
+    state: present
 
 - name: Placing Expense Config File in Nginx
   ansible.builtin.template:
@@ -30,38 +23,6 @@
 
 - name: Starting Nginx Service
   ansible.builtin.systemd:
-    name: nginx.service
+    name: nginx
     state: restarted
     enabled: yes
-
-
-
-
-
-#- name: Stop Nginx service
-#  ansible.builtin.systemd:
-#    name: nginx
-#    state: stopped
-#    enabled: no
-#
-#- name: Remove Nginx package
-#  ansible.builtin.yum:
-#    name: nginx
-#    state: absent
-#
-#- name: Remove Nginx configuration files
-#  ansible.builtin.file:
-#    path: "{{ item }}"
-#    state: absent
-#  with_items:
-#    - /etc/nginx
-#    - /etc/systemd/system/nginx.service
-#    - /etc/sysconfig/nginx
-#
-#- name: Remove Nginx dependencies (optional)
-#  ansible.builtin.yum:
-#    name: "{{ item }}"
-#    state: absent
-#  with_items:
-#    - nginx-common
-##        - nginx-mod-*   # Adjust based on specific modules installed
