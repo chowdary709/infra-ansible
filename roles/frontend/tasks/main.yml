@@ -1,31 +1,33 @@
-#- name: Set Hostname
-#  ansible.builtin.shell: set-hostname frontend
-#
-#- name: Installing Nginx
-#  ansible.builtin.dnf:
-#    name: nginx
-#    state: present
-#
-#- name: Placing Expense Config File in Nginx
+- name: Set Hostname
+  ansible.builtin.shell: set-hostname frontend
+
+- name: Installing Nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: present
+
+- name: Placing Expense Config File in Nginx
+  ansible.builtin.template:
+    src: expense.conf
+    dest: /etc/nginx/default.d/expense.conf
+
+#- name: Update Nginx Config
 #  ansible.builtin.template:
-#    src: expense.conf
-#    dest: /etc/nginx/default.d/expense.conf
-#
-##- name: Update Nginx Config
-##  ansible.builtin.template:
-##    src: nginx.conf
-##    dest: /etc/nginx/nginx.conf
-#
-#- name: Include App Pre-requisites
-#  ansible.builtin.import_role:
-#    name: common
-#    tasks_from: app_prereq
-#
-#- name: Starting Nginx Service
-#  ansible.builtin.systemd:
-#    name: nginx.service
-#    state: restarted
-#    enabled: yes
+#    src: nginx.conf
+#    dest: /etc/nginx/nginx.conf
+
+- name: Include App Pre-requisites
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_prereq
+
+- name: Starting Nginx Service
+  ansible.builtin.systemd:
+    name: nginx.service
+    state: restarted
+    enabled: yes
+
+
 
 
 
@@ -39,20 +41,20 @@
 #  ansible.builtin.yum:
 #    name: nginx
 #    state: absent
-
-- name: Remove Nginx configuration files
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: absent
-  with_items:
-    - /etc/nginx
-    - /etc/systemd/system/nginx.service
-    - /etc/sysconfig/nginx
-
-- name: Remove Nginx dependencies (optional)
-  ansible.builtin.yum:
-    name: "{{ item }}"
-    state: absent
-  with_items:
-    - nginx-common
-#        - nginx-mod-*   # Adjust based on specific modules installed
+#
+#- name: Remove Nginx configuration files
+#  ansible.builtin.file:
+#    path: "{{ item }}"
+#    state: absent
+#  with_items:
+#    - /etc/nginx
+#    - /etc/systemd/system/nginx.service
+#    - /etc/sysconfig/nginx
+#
+#- name: Remove Nginx dependencies (optional)
+#  ansible.builtin.yum:
+#    name: "{{ item }}"
+#    state: absent
+#  with_items:
+#    - nginx-common
+##        - nginx-mod-*   # Adjust based on specific modules installed
