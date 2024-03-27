@@ -1,58 +1,38 @@
 - name: Set Hostname
   ansible.builtin.shell: set-hostname frontend
-- name: Install Nginx
+
+
+
+- name: Installing Nginx
   ansible.builtin.dnf:
     name: nginx
     state: latest
 
-- name: Copy Expense Nginx Configuration
+- name: Create nginx default.d directory
+  ansible.builtin.file:
+    path: /etc/nginx/default.d
+    state: directory
+
+- name: Placing Expense Config File in Nginx
   ansible.builtin.template:
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
 
-- name: Import App Pre Requisites
+#- name: Update Nginx Config
+#  ansible.builtin.template:
+#    src: nginx.conf
+#    dest: /etc/nginx/nginx.conf
+
+- name: Include App Pre-requisites
   ansible.builtin.import_role:
     name: common
     tasks_from: app_prereq
 
-- name: Start Nginx
-  ansible.builtin.systemd_service:
+- name: Starting Nginx Service
+  ansible.builtin.systemd:
+    name: nginx.service
     state: restarted
-    name: nginx
     enabled: yes
-
-
-
-#- name: Installing Nginx
-#  ansible.builtin.dnf:
-#    name: nginx
-#    state: present
-#
-#- name: Create nginx default.d directory
-#  ansible.builtin.file:
-#    path: /etc/nginx/default.d
-#    state: directory
-#
-#- name: Placing Expense Config File in Nginx
-#  ansible.builtin.template:
-#    src: expense.conf
-#    dest: /etc/nginx/default.d/expense.conf
-#
-##- name: Update Nginx Config
-##  ansible.builtin.template:
-##    src: nginx.conf
-##    dest: /etc/nginx/nginx.conf
-#
-#- name: Include App Pre-requisites
-#  ansible.builtin.import_role:
-#    name: common
-#    tasks_from: app_prereq
-#
-#- name: Starting Nginx Service
-#  ansible.builtin.systemd:
-#    name: nginx.service
-#    state: restarted
-#    enabled: yes
 
 
 
