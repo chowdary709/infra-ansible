@@ -29,16 +29,16 @@
 
 
 
-- name: Stop Nginx service
-  ansible.builtin.systemd:
-    name: nginx
-    state: stopped
-    enabled: no
-
-- name: Remove Nginx package
-  ansible.builtin.yum:
-    name: nginx
-    state: absent
+#- name: Stop Nginx service
+#  ansible.builtin.systemd:
+#    name: nginx
+#    state: stopped
+#    enabled: no
+#
+#- name: Remove Nginx package
+#  ansible.builtin.yum:
+#    name: nginx
+#    state: absent
 
 - name: Remove Nginx configuration files
   ansible.builtin.file:
