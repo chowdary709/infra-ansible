@@ -11,7 +11,7 @@
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
 
-- name: Update Nginx Config
+- name: Update Nginx Config  # log setup
   ansible.builtin.template:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
