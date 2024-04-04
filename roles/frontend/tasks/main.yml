@@ -43,3 +43,12 @@
     state: restarted
     name: filebeat
     enabled: yes
+
+- name: Gather public IP address
+  ansible.builtin.shell: curl -s ifconfig.me
+  register: public_ip
+
+- name: Debugging - Display public IP address
+  ansible.builtin.debug:
+    msg: "Public IP address is {{ public_ip.stdout }}"
+
