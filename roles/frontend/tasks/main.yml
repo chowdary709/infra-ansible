@@ -38,6 +38,12 @@
     name: filebeat
     state: present
 
+#  /etc/filebeat/filebeat.yml
+- name: Update filebeat Config  # sending remort server to node server
+  ansible.builtin.template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+
 - name: Start filebeat
   ansible.builtin.systemd_service:
     state: restarted
