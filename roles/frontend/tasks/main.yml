@@ -26,3 +26,20 @@
     state: restarted
     name: nginx
     enabled: yes
+
+
+- name: setup elastic repo file
+  ansible.builtin.template:
+    src: elasticsearch.repo
+    dest: /etc/yum.repos.d/elasticsearch.repo
+
+- name: Installing filebeat
+  ansible.builtin.dnf:
+    name: filebeat
+    state: present
+
+- name: Start filebeat
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: filebeat
+    enabled: yes
