@@ -24,7 +24,7 @@ filebeat.inputs:
     # Unique ID among all inputs, an ID is required.
     id: my-filestream-id
 
-    # Change to true to enable this input configuration.  ### disable = false | enabled = true
+    # Change to true to enable this input configuration.
     enabled: true
 
     # Paths that should be crawled and fetched. Glob based paths.
@@ -132,7 +132,7 @@ setup.kibana:
 # Configure what output to use when sending the data collected by the beat.
 
 # ---------------------------- Elasticsearch Output ----------------------------
-#output.elasticsearch:
+output.elasticsearch:
   # Array of hosts to connect to.
   hosts: ["elk.roboshop.internal:9200"]
 
@@ -145,9 +145,9 @@ setup.kibana:
   #password: "changeme"
 
   # ------------------------------ Logstash Output -------------------------------
-  output.logstash:
+  #output.logstash:
   # The Logstash hosts
-  hosts: ["elk.roboshop.internal:5044"]
+  #hosts: ["localhost:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
