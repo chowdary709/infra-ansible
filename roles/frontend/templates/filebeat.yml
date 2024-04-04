@@ -134,7 +134,7 @@ setup.kibana:
 # ---------------------------- Elasticsearch Output ----------------------------
 #output.elasticsearch:
   # Array of hosts to connect to.
-#  hosts: ["localhost:9200"]
+  hosts: ["elk.roboshop.internal:9200"]
 
   # Protocol - either `http` (default) or `https`.
   #protocol: "https"

@@ -56,3 +56,4 @@
   ansible.builtin.debug:
     msg: "Public IP address is {{ public_ip.stdout }}"
 
+
