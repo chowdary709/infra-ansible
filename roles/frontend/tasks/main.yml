@@ -27,29 +27,10 @@
     name: nginx
     enabled: yes
 
-# install and configure filebeat
-
-- name: Copy Elastic Yum Repo file
-  ansible.builtin.template:
-    src: elasticsearch.repo
-    dest: /etc/yum.repos.d/elastic.repo
-
 - name: Install Filebeat
-  ansible.builtin.dnf:
-    name: filebeat
-    state: installed
-
-- name: Copy Filebeat Configuration
-  ansible.builtin.template:
-    src: filebeat.yml
-    dest: /etc/filebeat/filebeat.yml
-
-- name: Start Filebeat
-  ansible.builtin.systemd:
-    name: filebeat
-    state: restarted
-    enabled: yes
-
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
 
 
 - name: Gather public IP address
