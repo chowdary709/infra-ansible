@@ -145,7 +145,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["172.31.32.63:5044"]
+  hosts: ["elk.roboshop.internal:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
