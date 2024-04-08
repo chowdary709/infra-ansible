@@ -19,10 +19,10 @@ filebeat.inputs:
   # Below are the input-specific configurations.
 
   # filestream is an input for collecting log messages from files.
-  - type: filestream
+#  - type: filestream
 
     # Unique ID among all inputs, an ID is required.
-    id: my-filestream-id
+#    id: my-filestream-id
 
     # Change to true to enable this input configuration.
     enabled: true
@@ -151,7 +151,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["172.31.92.236:5044"]
+  hosts: ["elk.roboshop.internal:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
