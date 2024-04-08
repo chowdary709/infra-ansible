@@ -25,3 +25,5 @@ sleep 2
 
 echo -e "${GREEN}Running Ansible for 'backend'...${NC}"
 ansible-playbook -i backend.roboshop.internal, -e role_name=backend expense.yml
+
+
