@@ -6,4 +6,4 @@
 - name: restart prometheus
   ansible.builtin.systemd:
     name: prometheus
-    state: restart
+    state: restarted
