@@ -1,15 +1,15 @@
-- name: Node Exporter Downloader
+- name: Node Exporter Download
   ansible.builtin.unarchive:
-    src: "https://github.com/prometheus/node_exporter/releases/download/v{{nose_exporter_version}}/node_exporter-{{nose_exporter_version}}.linux-amd64.tar.gz"
+    src: "https://github.com/prometheus/node_exporter/releases/download/v{{node_exporter_version}}/node_exporter-{{node_exporter_version}}.linux-amd64.tar.gz"
     dest: "/opt"
     remote_src: yes
 
-- name: copy service file
+- name: Copy Service file
   ansible.builtin.template:
     src: node-exporter.service
     dest: /etc/systemd/system/node-exporter.service
 
-- name: restart service
+- name: Restart Service
   ansible.builtin.systemd:
     name: node-exporter
     state: restarted
