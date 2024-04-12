@@ -27,11 +27,15 @@
     name: nginx
     enabled: yes
 
-- name: Install Filebeat
-  ansible.builtin.import_role:
-    name: elk
-    tasks_from: filebeat
+#- name: Install Filebeat
+#  ansible.builtin.import_role:
+#    name: elk
+#    tasks_from: filebeat
 
+- name: Install prometheus
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: node-exporter.yml
 
 - name: Gather public IP address
   ansible.builtin.shell: curl -s ifconfig.me
