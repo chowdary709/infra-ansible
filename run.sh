@@ -1,9 +1,12 @@
 #!/bin/bash
 
-echo "Running Git Pull..."
-git pull
+# Function to perform git pull
+perform_git_pull() {
+    echo "Running Git Pull..."
+    git pull
+}
 
-# Define function to run playbook for a specific role
+# Function to run playbook for a specific role
 run_playbook() {
     role=$1
     echo "Running Ansible for '$role'..."
@@ -11,21 +14,23 @@ run_playbook() {
 }
 
 # Main script
+perform_git_pull
+
 case "$1" in
-    1)
+    frontend)
         run_playbook "frontend"
         ;;
-    2)
+    mysql)
         run_playbook "mysql"
         ;;
-    3)
+    backend)
         run_playbook "backend"
         ;;
-    4)
+    prometheus)
         run_playbook "prometheus"
         ;;
     *)
-        echo "Usage: $0 {1|2|3|4}"
+        echo "Usage: $0 {frontend|mysql|backend|prometheus}"
         exit 1
         ;;
 esac
