@@ -1,7 +1,8 @@
 [Unit]
 Description = Node Exporter Service
+
 [Service]
-ExecStart=/opt/vnode_exporter-{{nose_exporter_version}}.linux-amd64
+ExecStart=/opt/node_exporter-{{node_exporter_version}}.linux-amd64/node_exporter --collector.systemd
 SyslogIdentifier=node-exporter
 
 [Install]
