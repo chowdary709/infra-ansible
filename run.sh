@@ -20,11 +20,11 @@ ansible-playbook -i frontend.roboshop.internal, -e role_name=frontend main.yml
 #sleep 2
 
 #echo -e "${RED}Running Ansible for 'mysql'...${NC}"
-#ansible-playbook -i mysql.roboshop.internal, -e role_name=mysql expense.yml
+#ansible-playbook -i mysql.roboshop.internal, -e role_name=mysql main.yml
 
 # Introducing a 5-second delay
 #echo -e "${NC}Waiting for 2 seconds...${NC}"
 #sleep 2
 
 #echo -e "${GREEN}Running Ansible for 'backend'...${NC}"
-#ansible-playbook -i backend.roboshop.internal, -e role_name=backend expense.yml
+#ansible-playbook -i backend.roboshop.internal, -e role_name=backend main.yml
