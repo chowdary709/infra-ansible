@@ -13,7 +13,7 @@ echo -e "${NC}Waiting for 5 seconds...${NC}"
 sleep 5
 
 echo -e "${BLUE}Running Ansible for 'frontend'...${NC}"
-ansible-playbook -i frontend.roboshop.internal, -e role_name=frontend expense.yml
+ansible-playbook -i frontend.roboshop.internal, -e role_name=frontend main.yml
 
 # Introducing a 5-second delay
 #echo -e "${NC}Waiting for 2 seconds...${NC}"
