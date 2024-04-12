@@ -1,15 +1,10 @@
 #!/bin/bash
 
-# Function to perform git pull
-perform_git_pull() {
-    echo "Running Git Pull..."
-    git pull
-}
 # Define function to run playbook for a specific role
 run_playbook() {
     role=$1
     echo "Running Ansible for '$role'..."
-    ansible-playbook -i $role.roboshop.internal, -e "role_name=$role" main.yml
+    git pull ; ansible-playbook -i $role.roboshop.internal, -e "role_name=$role" main.yml
 }
 
 # Main script
