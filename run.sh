@@ -1,15 +1,10 @@
 #!/bin/bash
 
-# ANSI color codes
-#GREEN='\033[0;32m'
-#NC='\033[0m' # No Color
-
-echo -e "${GREEN}Running Git Pull...${NC}"
+echo "Running Git Pull..."
 git pull
 
 # Define function to run playbook for a specific role
 run_playbook() {
-    git pull
     role=$1
     echo "Running Ansible for '$role'..."
     ansible-playbook -i $role.roboshop.internal, -e "role_name=$role" main.yml
