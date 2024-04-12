@@ -9,6 +9,7 @@ git pull
 
 # Define function to run playbook for a specific role
 run_playbook() {
+    git pull
     role=$1
     echo "Running Ansible for '$role'..."
     ansible-playbook -i $role.roboshop.internal, -e "role_name=$role" main.yml
