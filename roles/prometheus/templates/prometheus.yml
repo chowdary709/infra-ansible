@@ -24,8 +24,9 @@ scrape_configs:
       - region: us-east-1
         port: 9100
         filters:
-          - name: "project"
-            value: "expense"
+          - name: "tag:project"
+            values:
+              - "expense"
     relabel_configs:
       - source_labels: [__meta_ec2_private_ip]
         target_label: privateip
