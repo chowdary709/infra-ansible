@@ -26,5 +26,5 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ["frontend.roboshop.internal:9100"]
+      - targets: ["frontend.roboshop.internal:9100", "mysql.roboshop.internal:9100", "backend.roboshop.internal:9100"]
 
