@@ -11,7 +11,7 @@
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
 
-- name: Update Nginx Config  # log setup
+- name: Update Nginx Config
   ansible.builtin.template:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
@@ -21,21 +21,21 @@
     name: common
     tasks_from: app_prereq
 
-- name: Start Nginx
-  ansible.builtin.systemd_service:
-    state: restarted
+- name: Starting Nginx Service
+  ansible.builtin.systemd:
     name: nginx
+    state: restarted
     enabled: yes
 
-#- name: Install Filebeat
-#  ansible.builtin.import_role:
-#    name: elk
-#    tasks_from: filebeat
-
-# - name: Install prometheus
+# - name: Install Filebeat
+#   ansible.builtin.import_role:
+#     name: elk
+#     tasks_from: filebeat
+#
+# - name: Install Node Exporter
 #   ansible.builtin.import_role:
 #     name: prometheus
-#     tasks_from: node-exporter.yml
+#     tasks_from: node-exporter
 
 
 
