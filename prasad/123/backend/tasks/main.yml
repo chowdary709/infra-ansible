@@ -29,14 +29,19 @@
     name: common
     tasks_from: app_prereq
 
-#- name: Install NodeJS dependencies
-#  ansible.builtin.shell: npm install
-#  args:
-#    chdir: /app
+- name: Install NodeJS dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
 
 - name: Install MySQL Client
   ansible.builtin.dnf:
     name: mysql
+
+# - name: Load Schema
+#   ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', 'expense.backend.DB_HOST', region='us-east-1' ) }} -uroot -p{{ lookup('aws_ssm', 'expense.backend.DB_PASS', region='us-east-1' ) }} < /app/schema/backend.sql
+
+# to update rds
 
 - name: Load Schema
   ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', '{{env}}.rds.endpoint', region='us-east-1' ) }} -u{{ lookup('aws_ssm', '{{env}}.rds.master_username', region='us-east-1' ) }} -p{{ lookup('aws_ssm', '{{env}}.rds.master_password', region='us-east-1' ) }} < /app/schema/backend.sql
@@ -48,8 +53,7 @@
     enabled: yes
     daemon-reload: yes
 
-- name: Install Node Exporter
+- name: Install prometheus
   ansible.builtin.import_role:
     name: prometheus
-    tasks_from: node-exporter
-
+    tasks_from: node-exporter.yml

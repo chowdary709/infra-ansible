@@ -1,0 +1,7 @@
+- name: Load Logstash
+  ansible.builtin.include_tasks: logstash.yml
+  when: elk_component == "logstash"
+
+- name: Load Filebeat
+  ansible.builtin.include_tasks: filebeat.yml
+  when: elk_component == "filebeat"

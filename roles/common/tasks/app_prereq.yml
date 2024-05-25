@@ -9,7 +9,13 @@
     state: directory
 
 - name: Download backend Code and Extract it
-  ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/{{ component }}.zip
-    dest: "{{ app_loc }}"
-    remote_src: yes
+ ansible.builtin.unarchive:
+   src: https://expense-artifacts.s3.amazonaws.com/{{ component }}.zip
+   dest: "{{ app_loc }}"
+   remote_src: yes
+
+# - name: Download backend Code and Extract it
+#   ansible.builtin.unarchive:
+#     src: http://{{ lookup('aws_ssm', 'artifactory_username', region='us-east-1' ) }}:{{ lookup('aws_ssm', 'artifactory_password', region='us-east-1' ) }}@172.31.40.193:8081/artifactory/{{ component }}/{{ component }}-{{ lookup('aws_ssm', '{{env}}.{{component}}.app_version', region='us-east-1' ) }}.zip
+#     dest: "{{ app_loc }}"
+#     remote_src: yes
